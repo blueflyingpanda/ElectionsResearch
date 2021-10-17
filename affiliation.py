@@ -38,7 +38,10 @@ state_employee -> является ли кандидат бюджетником 
 import pandas as pd
 
 
-def modified_fuzzy_search(name1, name2, length: int, error: int = 1):
+def modified_fuzzy_search(name1, name2, error: int = 1):
+    name1 = name1.split()[0]
+    name2 = name2.split()[0]
+    length = min(len(name1), len(name2)) // 2
     for i in range(length):
         if name1[i] != name2[i]:
             error -= 1
@@ -51,8 +54,7 @@ def has_alike_name(df, i) -> bool:
     single_mandate_df = df[df['single_mandate'] == df['single_mandate'][i]]
     for x in single_mandate_df.index:
         if single_mandate_df['name'][x] != df['name'][i] and single_mandate_df['name'][x][0] == df['name'][i][0] and \
-                modified_fuzzy_search(single_mandate_df['name'][x], df['name'][i],
-                                      min(len(single_mandate_df['name'][x]), len(df['name'][i])) // 2):
+                modified_fuzzy_search(single_mandate_df['name'][x], df['name'][i]):
             return True
     return False
 
@@ -68,8 +70,8 @@ def is_only_independent(df, i) -> bool:
 def main():
     df = pd.read_csv('clean_data.csv')
     affiliation_array = []
-    # print(modified_fuzzy_search('Дашкевич', 'Дашков', min(len('Дашкевич'), len('Дашков'))))
-    # print(modified_fuzzy_search('Галенкина', 'Голуенко', min(len('Галенкина'), len('Голуенко'))))
+    # print(modified_fuzzy_search('Дашкевич', 'Дашков'))
+    # print(modified_fuzzy_search('Галенкина', 'Галямина'))
     # return
     for i in df.index:
         if df['smart_vote'][i] == 1:
