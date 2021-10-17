@@ -38,10 +38,11 @@ state_employee -> является ли кандидат бюджетником 
 import pandas as pd
 
 
-def modified_fuzzy_search(name1, name2, error: int = 3):
+def modified_fuzzy_search(name1, name2):
     name1 = name1[0:name1.find(' ')]
     name2 = name2[0:name2.find(' ')]
     length = min(len(name1), len(name2))
+    error = length // 4
     for i in range(length):
         if name1[i] != name2[i]:
             error -= 1
