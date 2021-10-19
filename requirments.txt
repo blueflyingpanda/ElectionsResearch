@@ -1,3 +1,4 @@
 ssl
 urllib
 pandas
+bs4
