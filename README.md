@@ -88,7 +88,7 @@
 ### affiliation.py
 
 На основе данных собранных с помощью **parser_election7_info.py** и **parser_election7_results.py** и части данных,
-собранных вручную в файле **clean_data.csv**, высчитывается еще одна колонка affiliation со значениями _(спойлер - 0,
+собранных вручную с сайта [Мосгордумы](https://duma.mos.ru/ru/) и [Умного голосования](http://web.archive.org/web/20190829180251/https:/msk.vote/) в файле **clean_data.csv**, высчитывается еще одна колонка affiliation со значениями _(спойлер - 0,
 административный 1, неадминистративный 2)_, которая высчитывает по [алгоритму](https://miro.com/app/board/o9J_lqoY7Ww=/)
 принадлежность кандидата <br/>
 Эта колонка добавляется в clean_data.csv и сохраняется в файле full_data.csv <br/>
@@ -103,3 +103,7 @@
 
 В файле requirments.txt прописаны все зависимости для python <br/>
 `pip install -r requirements.txt`
+
+## structure.csv
+
+структура файла full_data.csv
