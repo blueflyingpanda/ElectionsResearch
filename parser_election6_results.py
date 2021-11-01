@@ -1,6 +1,6 @@
 """
 Программа парсит Сводные таблицы результатов выборов депутатов Московской городской Думы шестого созыва по
-одномандатному (многомандатному) округу. Результаты сохраняются в файл new_data.csv c полями
+одномандатному (многомандатному) округу. Результаты сохраняются в файл new_data6.csv c полями
 name -> ФИО кандидата
 single_mandate -> номер округа
 votes -> кол-во голосов, которые набрал кандидат
@@ -128,7 +128,7 @@ def main():
     )
     single_mandate = 1
     csv = 'name,single_mandate,votes,potential_voters,inside_voters,early_voters,outside_voters,attendance,early,outside,won\n'
-    file = open('new_data.csv', 'w')
+    file = open('new_data6.csv', 'w')
     for link_mid in link_mids:
         file.write(csv)
         csv = parse_page(link_left + link_mid + link_right, single_mandate)
