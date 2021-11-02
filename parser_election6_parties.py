@@ -13,7 +13,9 @@ def parse_page(link):
     req = request.Request(link, headers={'User-Agent': 'Mozilla/5.0'})
     file = request.urlopen(req)
     html = file.read().decode('windows-1251')  # windows-1251
-    html = html[html.find('<td>1</td><td class="text-left">'):html.find('</td><td align="center"> </td><td align="center"> </td>')]
+    lb = html.find('<td>1</td><td class="text-left">')
+    rb = html.find('</tbody>', lb)
+    html = html[lb:rb]
     html = html.split('</tr>')
     csv = ''
     for line in html:
@@ -24,7 +26,6 @@ def parse_page(link):
             party = line[left_border:right_border]
             csv += name + ',' + party + '\n'
     return csv.replace('"', '')
-
 
 
 def main():
@@ -62,11 +63,11 @@ def main():
         # '27720001542076',
         # '27720001542157',
         # '27720001542229',
-        # '27720001542304',
-        # '27720001542377',
-        # '27720001542472',
-        # '27720001542552',
-        # '27720001542648',
+        '27720001542304',
+        '27720001542377',
+        '27720001542472',
+        '27720001542552',
+        '27720001542648',
         '27720001542740',
         '27720001542821',
         '27720001542919',
@@ -76,7 +77,7 @@ def main():
         '27720001543275',
         '27720001543361',
         '27720001543439',
-        '27720001543525'
+        '27720001543525',
     )
     csv = 'name, party\n'
     file = open('parties6.csv', 'a')
@@ -89,4 +90,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
