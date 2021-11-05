@@ -96,7 +96,10 @@ def main():
                             if df['state_employee'][i] == 1:
                                 affiliation_array.append(1)
                             else:
-                                affiliation_array.append(2)
+                                if df['potential_voters'][i] * 0.03 > df['votes'][i]:
+                                    affiliation_array.append(1)
+                                else:
+                                    affiliation_array.append(2)
                 else:
                     if df['party'][i] == 3:
                         affiliation_array.append(0)
