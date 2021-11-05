@@ -15,6 +15,7 @@ won -> статус кандидата True - победил, False - проиг
 """
 
 import ssl
+import time
 from urllib import request
 
 
@@ -132,6 +133,7 @@ def main():
     for link_mid in link_mids:
         file.write(csv)
         csv = parse_page(link_left + link_mid + link_right, single_mandate)
+        time.sleep(9)
         single_mandate += 1
     file.write(csv)
     file.close()

@@ -69,11 +69,9 @@ def is_only_independent(df, i) -> bool:
 
 
 def main():
+    parliament_parties = {4, 5, 8}
     df = pd.read_csv('clean_data.csv')
     affiliation_array = []
-    # print(modified_fuzzy_search('Дашкевич', 'Дашков'))
-    # print(modified_fuzzy_search('Галенкина', 'Галямина'))
-    # return
     for i in df.index:
         if df['smart_vote'][i] == 1:
             affiliation_array.append(2)
@@ -81,32 +79,35 @@ def main():
             if has_alike_name(df, i) and df['party'][i] != 4 and df['party'][i] != 8 and df['party'][i] != 9:
                 affiliation_array.append(0)
             else:
-                if df['party'][i] == 0:
-                    if is_only_independent(df, i):
-                        affiliation_array.append(1)
-                    else:
-                        if df['won'][i] == 1:
-                            if df['joined_united_rus'][i] == 1:
-                                affiliation_array.append(1)
-                            elif df['joined_united_rus'][i] == 0:
-                                affiliation_array.append(2)
-                            else:
-                                raise Exception(df['name'][i])  # -1 там, где должно быть 0 или 1
-                        else:
-                            if df['state_employee'][i] == 1:
-                                affiliation_array.append(1)
-                            else:
-                                if df['potential_voters'][i] * 0.03 > df['votes'][i]:
-                                    affiliation_array.append(1)
-                                else:
-                                    affiliation_array.append(2)
+                if df['party'][i] in parliament_parties:
+                    affiliation_array.append(2)
                 else:
-                    if df['party'][i] == 3:
+                    if df['potential_voters'][i] * 0.03 > df['votes'][i]:
                         affiliation_array.append(0)
                     else:
-                        affiliation_array.append(2)
+                        if df['party'][i] == 0:
+                            if is_only_independent(df, i):
+                                affiliation_array.append(1)
+                            else:
+                                if df['won'][i] == 1:
+                                    if df['joined_united_rus'][i] == 1:
+                                        affiliation_array.append(1)
+                                    elif df['joined_united_rus'][i] == 0:
+                                        affiliation_array.append(2)
+                                    else:
+                                        raise Exception(df['name'][i])  # -1 там, где должно быть 0 или 1
+                                else:
+                                    if df['state_employee'][i] == 1:
+                                        affiliation_array.append(1)
+                                    else:
+                                        affiliation_array.append(2)
+                        else:
+                            if df['party'][i] == 3:
+                                affiliation_array.append(0)
+                            else:
+                                affiliation_array.append(2)
     df['affiliation'] = affiliation_array
-    df.to_csv('full_data.csv', sep=',', encoding='utf-8')
+    df.to_csv('full_data.csv', sep=',', encoding='utf-8', index = False)
 
 
 if __name__ == '__main__':
