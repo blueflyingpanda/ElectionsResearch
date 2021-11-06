@@ -1,10 +1,10 @@
 """На основе данных собранных с помощью parser_election7_info.py и parser_election7_results.py и части данных
-собранных вручную в файле clean_data.csv, высчитывается еще одна колонка affiliation со значениями(спойлер - 0,
+собранных вручную в файле clean_data7.csv, высчитывается еще одна колонка affiliation со значениями(спойлер - 0,
 административный 1, неадминистративный 2), которая высчитывает по алгоритму
 принадлежность кандидата (ознакомиться с древом решений можно здесь https://miro.com/app/board/o9J_lqoY7Ww=/) Эта
-колонка добавляется в clean_data.csv и сохраняется в файле full_data.csv
+колонка добавляется в clean_data7.csv и сохраняется в файле full_data7.csv
 
-Изначальные поля clean_data.csv:
+Изначальные поля clean_data7.csv:
 name -> ФИО кандидата
 
 party -> партия кандидата
@@ -70,7 +70,7 @@ def is_only_independent(df, i) -> bool:
 
 def main():
     parliament_parties = {4, 5, 8}
-    df = pd.read_csv('clean_data.csv')
+    df = pd.read_csv('clean_data7.csv')
     affiliation_array = []
     for i in df.index:
         if df['smart_vote'][i] == 1:
@@ -107,7 +107,7 @@ def main():
                             else:
                                 affiliation_array.append(2)
     df['affiliation'] = affiliation_array
-    df.to_csv('full_data.csv', sep=',', encoding='utf-8', index = False)
+    df.to_csv('full_data7.csv', sep=',', encoding='utf-8', index = False)
 
 
 if __name__ == '__main__':

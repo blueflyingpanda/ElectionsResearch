@@ -1,4 +1,4 @@
-import affiliation as af
+import affiliation7 as af
 import pandas as pd
 
 def if_won(df, n , affiliation_array):

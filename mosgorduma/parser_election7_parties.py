@@ -1,6 +1,6 @@
 """
 Программа парсит сведения о кандидатах выборов депутатов Московской городской Думы седьмого созыва по
-одномандатному (многомандатному) округу. Результаты сохраняются в файл info.csv c полями
+одномандатному (многомандатному) округу. Результаты сохраняются в файл info7.csv c полями
 single_mandate -> номер округа
 declined -> кол-во отказов
 """
@@ -10,13 +10,23 @@ import time
 from urllib import request
 
 
-def parse_page(link, single_mandate):
+def parse_page(link):
     req = request.Request(link, headers={'User-Agent': 'Mozilla/5.0'})
     file = request.urlopen(req)
     html = file.read().decode('windows-1251')  # windows-1251
-    declined = [i for i in range(len(html)) if html.startswith('отказ в регистрации', i) or
-                html.startswith('выбывший (после регистрации) кандидат', i)]
-    return str(single_mandate) + ',' + str(len(declined)) + '\n'
+    lb = html.find('<td>1</td><td class="text-left">')
+    rb = html.find('</tbody>', lb)
+    html = html[lb:rb]
+    html = html.split('</tr>')
+    csv = ''
+    for line in html:
+        if line.find('зарегистрирован') != -1:
+            name = line[line.find('>', line.find('href=')) + 1:line.find('</a></td><td')]
+            left_border = line.find('"text-left">', line.find('align="center"')) + 12
+            right_border = line.find('</td><td align', line.find('align="center"'))
+            party = line[left_border:right_border]
+            csv += name + ',' + party + '\n'
+    return csv.replace('"', '')
 
 
 def main():
@@ -70,14 +80,12 @@ def main():
         '27720002327927',
         '27720002327932'
     )
-    single_mandate = 1
-    csv = 'single_mandate, declined\n'
-    file = open('info.csv', 'w')
+    csv = 'name, party\n'
+    file = open('parties7.csv', 'w')
     for link_mid in link_mids:
         file.write(csv)
-        csv = parse_page(link_left + link_mid + link_right, single_mandate)
+        csv = parse_page(link_left + link_mid + link_right)
         time.sleep(9)
-        single_mandate += 1
     file.write(csv)
     file.close()
 

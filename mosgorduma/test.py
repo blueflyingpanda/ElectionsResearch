@@ -1,11 +1,11 @@
 """
-Тестирует affiliation в full_data.csv
-который получили из affiliation.py
+Тестирует affiliation в full_data7.csv
+который получили из affiliation7.py
 """
 
 import pandas as pd
 
-df = pd.read_csv('full_data.csv')
+df = pd.read_csv('full_data7.csv')
 voc = {0: 'спойлер', 1: 'адм', 2: 'не адм'}
 
 
