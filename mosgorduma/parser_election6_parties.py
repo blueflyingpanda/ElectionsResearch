@@ -80,7 +80,7 @@ def main():
         '27720001543439',
         '27720001543525',
     )
-    csv = 'name, party\n'
+    csv = 'name,party\n'
     file = open('parties6.csv', 'w')
     for link_mid in link_mids:
         file.write(csv)

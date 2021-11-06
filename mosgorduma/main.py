@@ -21,18 +21,32 @@ def extract_mandate(line):
 
 def form_clean_data(election_number):
     """gather together all data and save it in clean_data"""
-    data = open(f'data{election_number}', 'r')
-    info = open(f'info{election_number}', 'r')
-    hand = open(f'info{election_number}', 'r')
-    parties = open(f'parties{election_number}', 'r')
-    clean = open(f'clean_data{election_number}', 'w')
+    data = open(f'data{election_number}.csv', 'r')
+    info = open(f'info{election_number}.csv', 'r')
+    hand = open(f'hand_data{election_number}.csv', 'r')
+    parties = open(f'parties{election_number}short.csv', 'r')
+    clean = open(f'clean_data{election_number}.csv', 'w')
     single_mandate = 0
     i = next(info)
+    i = i.split(',')[1]
+    first = False
     for d, h, p in zip(data, hand, parties):
-        if extract_mandate(d) > single_mandate:
+        if first and extract_mandate(d) > single_mandate:
             single_mandate += 1
             i = next(info)
+            i = i.split(',')[1]
+        first = True
+        d = d.strip('\n')
+        i = i.strip('\n')
+        h = h.strip('\n')
+        p = p.strip('\n')
+        p = p.split(',')[1]
         clean.write(f'{d},{i},{h},{p}\n')
+    data.close()
+    info.close()
+    hand.close()
+    parties.close()
+    clean.close()
 
 
 def main():
@@ -41,11 +55,11 @@ def main():
         exit(1)
     if sys.argv[1] == '2014':
         start_time = time.time()
-        parser_election6_results.main()
-        print("DATA --- %s seconds ---" % (time.time() - start_time))
-        parser_election6_info.main()
-        print("INFO --- %s seconds ---" % (time.time() - start_time))
-        parser_election6_parties.main()
+        # parser_election6_results.main()
+        # print("DATA --- %s seconds ---" % (time.time() - start_time))
+        # parser_election6_info.main()
+        # print("INFO --- %s seconds ---" % (time.time() - start_time))
+        # parser_election6_parties.main()
         shortify_parties6.main()
         print("PARTIES --- %s seconds ---" % (time.time() - start_time))
         form_clean_data(6)

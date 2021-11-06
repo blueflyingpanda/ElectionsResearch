@@ -70,7 +70,7 @@ def main():
         '27720001543525',
     )
     single_mandate = 1
-    csv = 'single_mandate, declined\n'
+    csv = 'single_mandate,declined\n'
     file = open('info6.csv', 'w')
     for link_mid in link_mids:
         file.write(csv)
