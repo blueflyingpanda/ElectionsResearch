@@ -85,7 +85,7 @@ def main():
     for link_mid in link_mids:
         file.write(csv)
         csv = parse_page(link_left + link_mid + link_right)
-        time.sleep(9)
+        # time.sleep(9)
     file.write(csv)
     file.close()
 
