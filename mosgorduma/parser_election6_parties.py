@@ -8,6 +8,7 @@ declined -> кол-во отказов
 import ssl
 import time
 from urllib import request
+from progress_bar import show_progress_bar
 
 
 def parse_page(link):
@@ -84,7 +85,7 @@ def main():
     file = open('parties6.csv', 'w')
     counter = 1
     for link_mid in link_mids:
-        print(counter)
+        show_progress_bar(counter)
         counter += 1
         file.write(csv)
         csv = parse_page(link_left + link_mid + link_right)

@@ -8,7 +8,7 @@ declined -> кол-во отказов
 import ssl
 import time
 from urllib import request
-import os
+from progress_bar import show_progress_bar
 
 
 def parse_page(link, single_mandate):
@@ -75,11 +75,7 @@ def main():
     csv = 'single_mandate,declined\n'
     file = open('info7.csv', 'w')
     for link_mid in link_mids:
-        print(single_mandate)
-        percent = int(single_mandate * 100 / 45)
-        space = 100 - percent
-        print('LOADING:', '[' + '|' * percent + ' ' * space + ']', str(percent) + '%')
-        # os.system('clear')
+        show_progress_bar(single_mandate)
         file.write(csv)
         csv = parse_page(link_left + link_mid + link_right, single_mandate)
         # time.sleep(9)

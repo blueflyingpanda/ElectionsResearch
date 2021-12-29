@@ -17,6 +17,7 @@ won -> статус кандидата True - победил, False - проиг
 import ssl
 import time
 from urllib import request
+from progress_bar import show_progress_bar
 
 
 def discover_winner(votes: list) -> list:
@@ -131,7 +132,7 @@ def main():
     csv = 'name,single_mandate,votes,potential_voters,inside_voters,early_voters,outside_voters,attendance,early,outside,won\n'
     file = open('data6.csv', 'w')
     for link_mid in link_mids:
-        print(single_mandate)
+        show_progress_bar(single_mandate)
         file.write(csv)
         csv = parse_page(link_left + link_mid + link_right, single_mandate)
         # time.sleep(9)
