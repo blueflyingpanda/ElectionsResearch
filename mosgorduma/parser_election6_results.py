@@ -38,10 +38,10 @@ def retrieve_general_info(html: str) -> tuple:
     inside_voters = html[2][html[2].find('<nobr><b>') + 9:html[2].find('</b></nobr>')]
     early_voters = html[3][html[3].find('<nobr><b>') + 9:html[3].find('</b></nobr>')]
     outside_voters = html[6][html[6].find('<nobr><b>') + 9:html[6].find('</b></nobr>')]
-    attendance = str(
-        round((int(inside_voters) + int(early_voters) + int(outside_voters)) / int(potential_voters) * 100, 2))
-    early = str(round(int(early_voters) / int(potential_voters) * 100, 2))
-    outside = str(round(int(outside_voters) / int(potential_voters) * 100, 2))
+    total_votes = int(inside_voters) + int(early_voters) + int(outside_voters)
+    attendance = str(total_votes * 100 / int(potential_voters))
+    early = str(int(early_voters) * 100 / total_votes)
+    outside = str(int(outside_voters) * 100 / total_votes)
     return potential_voters, inside_voters, early_voters, outside_voters, attendance, early, outside
 
 

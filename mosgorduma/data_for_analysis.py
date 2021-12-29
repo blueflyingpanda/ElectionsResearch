@@ -2,7 +2,6 @@ import pandas as pd
 import sys
 
 def get_computed_data6(lst):
-    print(len(lst))
     prev_max = -1
     maximum = -1
     spoilers = 0
@@ -19,7 +18,7 @@ def get_computed_data6(lst):
             spoilers += 1
         elif l['affiliation'] == 2:
             opposition += 1
-    return spoilers, opposition, adm_voters, prev_max
+    return spoilers * 100 / len(lst), opposition * 100 / len(lst), adm_voters, prev_max
 
 def get_computed_data7(lst):
     print(len(lst))
@@ -41,11 +40,7 @@ def get_computed_data7(lst):
 def get_data_for_analysis6(df):
     with open('data_for_analysis6.csv', 'w') as data:
         data.write(f'single_mandate,attendance,early,outside,adm_voters,second_voters,spoilers,opposition,declined\n')
-        attendance = df.iloc[0]['attendance']
-        outside = df.iloc[0]['outside']
-        early = df.iloc[0]['early']
-        declined = df.iloc[0]['declined']
-        mandate = 1
+        mandate = 0
         tmp_lst = []
         for _, row in df.iterrows():
             if row['single_mandate'] > mandate:
@@ -58,7 +53,7 @@ def get_data_for_analysis6(df):
                 mandate += 1
                 tmp_lst = []
             tmp_lst.append({
-                             "voters_percent": (row['votes'] * 100) / row['potential_voters'],
+                             "voters_percent": (row['votes'] * 100) / ((row['potential_voters'] * row['attendance']) / 100),
                              "affiliation": row['affiliation']})
         spoilers, opposition, adm_voters, second_voters = get_computed_data6(tmp_lst)
         data.write(f'{mandate},{attendance},{early},{outside},{adm_voters},{second_voters},{spoilers},{opposition},{declined}\n')
@@ -68,11 +63,7 @@ def get_data_for_analysis6(df):
 def get_data_for_analysis7(df):
     with open('data_for_analysis7.csv', 'w') as data:
         data.write(f'single_mandate,attendance,early,outside,adm_voters,smart_voters,spoilers,opposition,declined\n')
-        attendance = df.iloc[0]['attendance']
-        outside = df.iloc[0]['outside']
-        early = df.iloc[0]['early']
-        declined = df.iloc[0]['declined']
-        mandate = 1
+        mandate = 0
         tmp_lst = []
         for _, row in df.iterrows():
             if row['single_mandate'] > mandate:
@@ -86,7 +77,7 @@ def get_data_for_analysis7(df):
                 tmp_lst = []
             tmp_lst.append({
                 "smart_vote": row['smart_vote'],
-                "voters_percent": (row['votes'] * 100) / row['potential_voters'],
+                "voters_percent": (row['votes'] * 100) / ((row['potential_voters'] * row['attendance']) / 100),
                 "affiliation": row['affiliation']})
         spoilers, opposition, adm_voters, smart_voters = get_computed_data7(tmp_lst)
         data.write(f'{mandate},{attendance},{early},{outside},{adm_voters},{smart_voters},{spoilers},{opposition},{declined}\n')

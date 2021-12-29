@@ -12,6 +12,7 @@ import parser_election6_info
 import parser_election7_info
 import mandates_to_districts_to_uiks
 import violation_map
+from pathlib import Path
 
 
 def extract_mandate(line):
@@ -55,11 +56,15 @@ def main():
         exit(1)
     if sys.argv[1] == '2014':
         start_time = time.time()
-        # parser_election6_results.main()
-        # print("DATA --- %s seconds ---" % (time.time() - start_time))
-        # parser_election6_info.main()
-        # print("INFO --- %s seconds ---" % (time.time() - start_time))
-        # parser_election6_parties.main()
+        data = Path('data6.csv')
+        info = Path('info6.csv')
+        parties = Path('parties6.csv')
+        if not data.is_file() or not info.is_file() or not parties.is_file():
+            parser_election6_results.main()
+            print("DATA --- %s seconds ---" % (time.time() - start_time))
+            parser_election6_info.main()
+            print("INFO --- %s seconds ---" % (time.time() - start_time))
+            parser_election6_parties.main()
         shortify_parties6.main()
         print("PARTIES --- %s seconds ---" % (time.time() - start_time))
         form_clean_data(6)
@@ -67,11 +72,15 @@ def main():
         print("TOTAL --- %s seconds ---" % (time.time() - start_time))
     elif sys.argv[1] == '2019':
         start_time = time.time()
-        parser_election7_results.main()
-        print("DATA --- %s seconds ---" % (time.time() - start_time))
-        parser_election7_info.main()
-        print("INFO --- %s seconds ---" % (time.time() - start_time))
-        parser_election7_parties.main()
+        data = Path('data7.csv')
+        info = Path('info7.csv')
+        parties = Path('parties7.csv')
+        if not data.is_file() or not info.is_file() or not parties.is_file():
+            parser_election7_results.main()
+            print("DATA --- %s seconds ---" % (time.time() - start_time))
+            parser_election7_info.main()
+            print("INFO --- %s seconds ---" % (time.time() - start_time))
+            parser_election7_parties.main()
         shortify_parties7.main()
         print("PARTIES --- %s seconds ---" % (time.time() - start_time))
         # mandates_to_districts_to_uiks.main()
