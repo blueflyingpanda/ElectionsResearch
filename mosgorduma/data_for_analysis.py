@@ -44,8 +44,9 @@ def get_data_for_analysis6(df):
         tmp_lst = []
         for _, row in df.iterrows():
             if row['single_mandate'] > mandate:
-                spoilers, opposition, adm_voters, second_voters = get_computed_data6(tmp_lst)
-                data.write(f'{mandate},{attendance},{early},{outside},{adm_voters},{second_voters},{spoilers},{opposition},{declined}\n')
+                if len(tmp_lst) != 0:
+                    spoilers, opposition, adm_voters, second_voters = get_computed_data6(tmp_lst)
+                    data.write(f'{mandate},{attendance},{early},{outside},{adm_voters},{second_voters},{spoilers},{opposition},{declined}\n')
                 attendance = row['attendance']
                 outside = row['outside']
                 early = row['early']
@@ -67,8 +68,9 @@ def get_data_for_analysis7(df):
         tmp_lst = []
         for _, row in df.iterrows():
             if row['single_mandate'] > mandate:
-                spoilers, opposition, adm_voters, smart_voters = get_computed_data7(tmp_lst)
-                data.write(f'{mandate},{attendance},{early},{outside},{adm_voters},{smart_voters},{spoilers},{opposition},{declined}\n')
+                if len(lst) != 0:
+                    spoilers, opposition, adm_voters, smart_voters = get_computed_data7(tmp_lst)
+                    data.write(f'{mandate},{attendance},{early},{outside},{adm_voters},{smart_voters},{spoilers},{opposition},{declined}\n')
                 attendance = row['attendance']
                 outside = row['outside']
                 early = row['early']
