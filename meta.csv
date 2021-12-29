@@ -1,13 +1,13 @@
 ﻿property,value
-version,1.0
+version,0.1
 identifier,НИУ ВШЭ
-title,Данные о выборах в Мосгордуму 2019
-description,Финальный датасет в двух эксемплярах находится в файлах full_data.csv и full_data.xlsx. Данные в датасетах *.csv и *.xlsx отличаются *.csv оптмизирован для взаимодействия с python и pandas. *.xlsx приведен в читаемый для человека вид. Датасет в формате csv (кодировка UTF-8; сепаратор запятая). Подробнее в Readme.md
-description,ЦИК РФ;Карта нарушений на выборах;Умное голосование
-created,13.10.2021
-modified,20.10.2021
+title,Данные о выборах в Мосгордуму 2014 и 2019
+description,Данная программа скрэйпит, парсит, очищает, обогащает данные о выборах в Мосгордуму за 2014 и 2019 годы и возвращет датасеты. Подробнее в Readme.md
+datasource,ЦИК РФ;Карта нарушений на выборах;Умное голосование
+created,30.12.2021
+modified,31.12.2021
 format,csv (кодировка UTF-8; сепаратор запятая)
-dataset,full_data.csv
+dataset,full_data6.csv и full_data7.csv
 subject,Выборы
 authors,Майя Гусева & Илья Сагайдак
 mail,mgguseva@edu.hse.ru & itsagaydak@edu.hse.ru

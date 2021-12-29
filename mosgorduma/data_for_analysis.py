@@ -34,7 +34,7 @@ def get_computed_data7(lst):
             spoilers += 1
         elif l['affiliation'] == 2:
             opposition += 1
-    return spoilers, opposition, adm_voters, smart_voters
+    return spoilers * 100 / len(lst), opposition * 100 / len(lst), adm_voters, smart_voters
 
 def get_data_for_analysis6(df):
     with open('data_for_analysis6.csv', 'w') as data:

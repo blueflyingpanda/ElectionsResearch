@@ -66,18 +66,26 @@
 Поробнее в _docstrings_ <br/>
 
 ---
-parser_election7_results.py
+[parser_election7_results.py]()
 
 Парсит [сводные таблицы результатов выборов депутатов Московской городской Думы седьмого созыва по
 одномандатному округу.](http://www.moscow-city.vybory.izbirkom.ru/region/izbirkom?action=show&root=1&tvd=27720002327741&vrn=27720002327736&prver=0&pronetvd=null&region=77&sub_region=77&type=424&report_mode=null) <br/>
 Результаты сохраняются в файл [data7.csv]() <br/>
 Поробнее в _docstrings_ <br/>
 
-### parser_election7_info.py
+[parser_election7_info.py]()
 
 Программа парсит [Программа парсит сведения о кандидатах выборов депутатов Московской городской Думы седьмого созыва по
 одномандатному округу.](http://www.moscow-city.vybory.izbirkom.ru/region/izbirkom?action=show&root=1&tvd=27720002327741&vrn=27720002327736&prver=0&pronetvd=null&region=77&sub_region=77&type=424&report_mode=null) <br/>
-Результаты сохраняются в файл **info.csv** <br/>
+Результаты сохраняются в файл [info7.csv]() <br/>
+Эта информация помогает посчитать количество отказов в регистрации в каждом округе <br/>
+Поробнее в _docstrings_ <br/>
+
+[parser_election7_parties.py]()
+
+Парсит [сведения о партиях выборов депутатов Московской городской Думы седьмого созыва по
+одномандатному округу.](http://www.moscow-city.vybory.izbirkom.ru/region/izbirkom?action=show&root=1&tvd=27720002327741&vrn=27720002327736&prver=0&pronetvd=null&region=77&sub_region=77&type=220&vibid=27720002327736&report_mode=null) <br/>
+Результаты сохраняются в файл [parties7.csv]() <br/>
 Эта информация помогает посчитать количество отказов в регистрации в каждом округе <br/>
 Поробнее в _docstrings_ <br/>
 
