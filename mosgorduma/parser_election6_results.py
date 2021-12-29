@@ -44,7 +44,7 @@ def retrieve_general_info(html: str) -> tuple:
     outside = str(int(outside_voters) * 100 / total_votes)
     return potential_voters, inside_voters, early_voters, outside_voters, attendance, early, outside
 
-
+# TODO make one funcion
 def retrieve_candidates_info(html: str) -> tuple:
     html = html.split('</tr>')
     candidates = []
@@ -131,6 +131,7 @@ def main():
     csv = 'name,single_mandate,votes,potential_voters,inside_voters,early_voters,outside_voters,attendance,early,outside,won\n'
     file = open('data6.csv', 'w')
     for link_mid in link_mids:
+        print(single_mandate)
         file.write(csv)
         csv = parse_page(link_left + link_mid + link_right, single_mandate)
         # time.sleep(9)

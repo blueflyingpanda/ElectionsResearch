@@ -8,6 +8,7 @@ declined -> кол-во отказов
 import ssl
 import time
 from urllib import request
+import os
 
 
 def parse_page(link):
@@ -82,7 +83,14 @@ def main():
     )
     csv = 'name,party\n'
     file = open('parties7.csv', 'w')
+    counter = 1
     for link_mid in link_mids:
+        print(counter)
+        percent = int(counter * 100 / 45)
+        space = 100 - percent
+        print('LOADING:', '[' + '|' * percent + ' ' * space + ']', str(percent) + '%')
+        # os.system('clear')
+        counter += 1
         file.write(csv)
         csv = parse_page(link_left + link_mid + link_right)
         # time.sleep(9)

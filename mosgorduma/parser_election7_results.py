@@ -17,6 +17,7 @@ won -> статус кандидата True - победил, False - проиг
 import ssl
 import time
 from urllib import request
+import os
 
 
 def discover_winner(votes: list) -> list:
@@ -38,10 +39,10 @@ def retrieve_general_info(html: str) -> tuple:
     inside_voters = html[2][html[2].find('<nobr><b>') + 9:html[2].find('</b></nobr>')]
     early_voters = html[3][html[3].find('<nobr><b>') + 9:html[3].find('</b></nobr>')]
     outside_voters = html[6][html[6].find('<nobr><b>') + 9:html[6].find('</b></nobr>')]
-    attendance = str(
-        round((int(inside_voters) + int(early_voters) + int(outside_voters)) / int(potential_voters) * 100, 2))
-    early = str(round(int(early_voters) / int(potential_voters) * 100, 2))
-    outside = str(round(int(outside_voters) / int(potential_voters) * 100, 2))
+    total_votes = int(inside_voters) + int(early_voters) + int(outside_voters)
+    attendance = str(total_votes * 100 / int(potential_voters))
+    early = str(int(early_voters) * 100 / total_votes)
+    outside = str(int(outside_voters) * 100 / total_votes)
     return potential_voters, inside_voters, early_voters, outside_voters, attendance, early, outside
 
 
@@ -131,6 +132,11 @@ def main():
     csv = 'name,single_mandate,votes,potential_voters,inside_voters,early_voters,outside_voters,attendance,early,outside,won\n'
     file = open('data7.csv', 'w')
     for link_mid in link_mids:
+        print(single_mandate)  # TODO progress bar in separate func
+        percent = int(single_mandate * 100 / 45)
+        space = 100 - percent
+        print('LOADING:', '[' + '|' * percent + ' ' * space + ']', str(percent) + '%')
+        # os.system('clear')
         file.write(csv)
         csv = parse_page(link_left + link_mid + link_right, single_mandate)
         # time.sleep(9)

@@ -82,7 +82,10 @@ def main():
     )
     csv = 'name,party\n'
     file = open('parties6.csv', 'w')
+    counter = 1
     for link_mid in link_mids:
+        print(counter)
+        counter += 1
         file.write(csv)
         csv = parse_page(link_left + link_mid + link_right)
         # time.sleep(9)
