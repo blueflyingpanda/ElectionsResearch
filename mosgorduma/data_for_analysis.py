@@ -21,7 +21,6 @@ def get_computed_data6(lst):
     return spoilers * 100 / len(lst), opposition * 100 / len(lst), adm_voters, prev_max
 
 def get_computed_data7(lst):
-    print(len(lst))
     spoilers = 0
     opposition = 0
     adm_voters = -1
@@ -68,7 +67,7 @@ def get_data_for_analysis7(df):
         tmp_lst = []
         for _, row in df.iterrows():
             if row['single_mandate'] > mandate:
-                if len(lst) != 0:
+                if len(tmp_lst) != 0:
                     spoilers, opposition, adm_voters, smart_voters = get_computed_data7(tmp_lst)
                     data.write(f'{mandate},{attendance},{early},{outside},{adm_voters},{smart_voters},{spoilers},{opposition},{declined}\n')
                 attendance = row['attendance']
