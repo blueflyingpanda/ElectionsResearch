@@ -45,7 +45,7 @@ def get_data_for_analysis6(df):
             if row['single_mandate'] > mandate:
                 if len(tmp_lst) != 0:
                     spoilers, opposition, adm_voters, second_voters = get_computed_data6(tmp_lst)
-                    data.write(f'{mandate},{attendance},{early},{outside},{adm_voters},{second_voters},{spoilers},{opposition},{declined}\n')
+                    data.write(f'{mandate},{attendance},{early},{outside},{adm_voters},{second_voters},{spoilers},{opposition},{declined * 100 / (declined + len(tmp_lst))}\n')
                 attendance = row['attendance']
                 outside = row['outside']
                 early = row['early']
@@ -56,7 +56,7 @@ def get_data_for_analysis6(df):
                              "voters_percent": (row['votes'] * 100) / ((row['potential_voters'] * row['attendance']) / 100),
                              "affiliation": row['affiliation']})
         spoilers, opposition, adm_voters, second_voters = get_computed_data6(tmp_lst)
-        data.write(f'{mandate},{attendance},{early},{outside},{adm_voters},{second_voters},{spoilers},{opposition},{declined}\n')
+        data.write(f'{mandate},{attendance},{early},{outside},{adm_voters},{second_voters},{spoilers},{opposition},{declined * 100 / (declined + len(tmp_lst))}\n')
 
 
 
@@ -69,7 +69,7 @@ def get_data_for_analysis7(df):
             if row['single_mandate'] > mandate:
                 if len(tmp_lst) != 0:
                     spoilers, opposition, adm_voters, smart_voters = get_computed_data7(tmp_lst)
-                    data.write(f'{mandate},{attendance},{early},{outside},{adm_voters},{smart_voters},{spoilers},{opposition},{declined}\n')
+                    data.write(f'{mandate},{attendance},{early},{outside},{adm_voters},{smart_voters},{spoilers},{opposition},{declined * 100 / (declined + len(tmp_lst))}\n')
                 attendance = row['attendance']
                 outside = row['outside']
                 early = row['early']
@@ -81,7 +81,7 @@ def get_data_for_analysis7(df):
                 "voters_percent": (row['votes'] * 100) / ((row['potential_voters'] * row['attendance']) / 100),
                 "affiliation": row['affiliation']})
         spoilers, opposition, adm_voters, smart_voters = get_computed_data7(tmp_lst)
-        data.write(f'{mandate},{attendance},{early},{outside},{adm_voters},{smart_voters},{spoilers},{opposition},{declined}\n')
+        data.write(f'{mandate},{attendance},{early},{outside},{adm_voters},{smart_voters},{spoilers},{opposition},{declined * 100 / (declined + len(tmp_lst))}\n')
 
 def main():
     if len(sys.argv) != 2:
