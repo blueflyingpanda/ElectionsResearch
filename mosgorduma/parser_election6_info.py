@@ -7,8 +7,7 @@ declined -> кол-во отказов
 
 import ssl
 from urllib import request
-import time
-from progress_bar import show_progress_bar
+from utils.progress_bar import show_progress_bar
 
 def parse_page(link, single_mandate):
     req = request.Request(link, headers={'User-Agent': 'Mozilla/5.0'})

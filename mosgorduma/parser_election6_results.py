@@ -15,9 +15,8 @@ won -> статус кандидата True - победил, False - проиг
 """
 
 import ssl
-import time
 from urllib import request
-from progress_bar import show_progress_bar
+from utils.progress_bar import show_progress_bar
 
 
 def discover_winner(votes: list) -> list:

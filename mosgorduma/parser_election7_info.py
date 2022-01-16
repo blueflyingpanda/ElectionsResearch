@@ -6,9 +6,8 @@ declined -> кол-во отказов
 """
 
 import ssl
-import time
 from urllib import request
-from progress_bar import show_progress_bar
+from utils.progress_bar import show_progress_bar
 
 
 def parse_page(link, single_mandate):
