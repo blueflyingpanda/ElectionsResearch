@@ -5,6 +5,7 @@ import bs4
 
 browser = webdriver.Chrome()
 
+
 def collide_two_lists(lst1: list, lst2: list):
     res = []
     for i in range(min(len(lst1), len(lst2))):
@@ -13,8 +14,6 @@ def collide_two_lists(lst1: list, lst2: list):
     if len(lst1) != len(lst2):
         res.append(lst1[len(lst2)])
     return res
-
-
 
 
 def parse_page_info(link):
@@ -26,8 +25,6 @@ def parse_page_info(link):
         soup = bs4.BeautifulSoup(html_source, 'html.parser')
         if soup.find('td', {"class": "dataTables_empty"}):
             break
-        with open('my.html', 'w') as f:
-            f.write(html_source)
         rows = soup.find_all('a', {"class": "list-link"})
         candidates = [r.text for r in rows]
         rows = soup.find_all('td')
