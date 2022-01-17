@@ -419,7 +419,7 @@ def parse_election_info2017():
     file = open('info2017.csv', 'w')
     district = 1
     for link_mid in link_mids:
-        show_progress_bar(district, mandates=125)
+        # show_progress_bar(district, mandates=125)
         district += 1
         file.write(csv)
         csv = parse_page_info(link_left + link_mid + link_right)
@@ -761,7 +761,7 @@ def parse_election_results2017():
     file = open('data2017.csv', 'w')
     district = 1
     for link_mid in link_mids:
-        show_progress_bar(district, mandates=125)
+        # show_progress_bar(district, mandates=125)
         file.write(csv)
         csv = parse_page_results(link_left + link_mid + link_right)
         district += 1

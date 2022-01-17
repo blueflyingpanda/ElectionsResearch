@@ -9,8 +9,8 @@ def main():
         print('should be one additional argument')
         exit(1)
     if sys.argv[1] == '2017':
-        # parse_election_results2017()
-        parse_election_info2017()
+        parse_election_results2017()
+        # parse_election_info2017()
         browser2017.close()
     elif sys.argv[1] == '2022':
         parse_election2022()
