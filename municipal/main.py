@@ -2,6 +2,7 @@ import sys
 from parser_election2017 import parse_election_results2017, parse_election_info2017
 from parser_election2017 import browser as browser2017
 from parser_election2022 import parse_election2022
+from os import path
 
 
 def main():
@@ -9,11 +10,17 @@ def main():
         print('should be one additional argument')
         exit(1)
     if sys.argv[1] == '2017':
-        parse_election_results2017()
-        # parse_election_info2017()
+        if not path.isfile('data2017.csv'):
+            parse_election_results2017()
+        if not path.isfile('info2017.csv'):
+            parse_election_info2017()
         browser2017.close()
-    elif sys.argv[1] == '2022':
-        parse_election2022()
+    # elif sys.argv[1] == '2022':
+        # if not path.isfile('data2022.csv'):
+        #     parse_election_results2022()
+        # if not path.isfile('info2022.csv'):
+        #     parse_election_info2022()
+        # browser2022.close()
     else:
         print('Invalid year, should 2017 or 2022 year')
 
