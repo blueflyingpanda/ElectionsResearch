@@ -44,7 +44,7 @@ def retrieve_general_info(html: str) -> tuple:
     outside = str(int(outside_voters) * 100 / total_votes)
     return potential_voters, inside_voters, early_voters, outside_voters, attendance, early, outside
 
-# TODO make one funcion
+
 def retrieve_candidates_info(html: str) -> tuple:
     html = html.split('</tr>')
     candidates = []

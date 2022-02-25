@@ -10,8 +10,6 @@ import parser_election6_results
 import parser_election7_results
 import parser_election6_info
 import parser_election7_info
-import mandates_to_districts_to_uiks
-import violation_map
 from pathlib import Path
 
 
@@ -83,8 +81,6 @@ def main():
             parser_election7_parties.main()
         shortify_parties7.main()
         print("PARTIES --- %s seconds ---" % (time.time() - start_time))
-        # mandates_to_districts_to_uiks.main()
-        # violation_map.main()
         form_clean_data(7)
         affiliation7.main()
         print("TOTAL --- %s seconds ---" % (time.time() - start_time))
