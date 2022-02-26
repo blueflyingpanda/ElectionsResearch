@@ -166,12 +166,28 @@ def parse_election_info2016():
     file.write(csv)
     file.close()
 
-def parse_election_parties2016():
-    pass
-
-
-def shortify_parties2016():
-    pass
+def convert_parties_to_numbers2016():
+    file = open('info2016.csv', 'r')
+    text = file.read()
+    file2 = open('info2016.csv', 'w')
+    text = text.replace('Самовыдвижение', '0')
+    text = text.replace('Политическая партия КОММУНИСТИЧЕСКАЯ ПАРТИЯ КОММУНИСТЫ РОССИИ', '3')
+    text = text.replace('Всероссийская политическая партия "ПАРТИЯ РОСТА"', '6')
+    text = text.replace('Политическая партия "Гражданская Платформа"', '11')
+    text = text.replace('Политическая партия "Российская объединенная демократическая партия "ЯБЛОКО"', '9')
+    text = text.replace('Политическая партия ЛДПР – Либерально-демократическая партия России', '5')
+    text = text.replace('Политическая партия СПРАВЕДЛИВАЯ РОССИЯ', '8')
+    text = text.replace('Политическая партия "КОММУНИСТИЧЕСКАЯ ПАРТИЯ РОССИЙСКОЙ ФЕДЕРАЦИИ"', '4')
+    text = text.replace('Общественная организация Всероссийская политическая партия "Гражданская Сила"', '1')
+    text = text.replace('Всероссийская политическая партия "ЕДИНАЯ РОССИЯ"', '10')
+    text = text.replace('Политическая партия "Российская экологическая партия "Зеленые"', '2')
+    text = text.replace('ВСЕРОССИЙСКАЯ ПОЛИТИЧЕСКАЯ ПАРТИЯ "РОДИНА"', '7')
+    text = text.replace('Региональное отделение в городе Москве Всероссийской политической партии Социал-демократическая партия России', '12')
+    text = text.replace('Политическая партия "Партия народной свободы" (ПАРНАС)', '13')
+    text = text.replace('Политическая партия "ПАТРИОТЫ РОССИИ"', '14')
+    file2.write(text)
+    file.close()
+    file2.close()
 
 
 def form_clean_data2016():
@@ -218,30 +234,30 @@ def main():
         if not data.is_file() or not info.is_file() or not parties.is_file():
             # parse_election_results2016()
             print("DATA --- %s seconds ---" % (time.time() - start_time))
-            parse_election_info2016()
+            # parse_election_info2016()
             print("INFO --- %s seconds ---" % (time.time() - start_time))
-            parse_election_parties2016()
-        shortify_parties2016()
+            convert_parties_to_numbers2016()
         print("PARTIES --- %s seconds ---" % (time.time() - start_time))
-        form_clean_data2016()
-        form_full_data2016()
+        # form_clean_data2016()  # hand data
+        # form_full_data2016()  #  affiliation algo
         print("TOTAL --- %s seconds ---" % (time.time() - start_time))
     elif sys.argv[1] == '2021':
-        start_time = time.time()
-        data = Path('data2021.csv')
-        info = Path('info2021.csv')
-        parties = Path('parties2021.csv')
-        if not data.is_file() or not info.is_file() or not parties.is_file():
-            parse_election_results2021()
-            print("DATA --- %s seconds ---" % (time.time() - start_time))
-            parse_election_info2021()
-            print("INFO --- %s seconds ---" % (time.time() - start_time))
-            parse_election_parties2021()
-        shortify_parties2021()
-        print("PARTIES --- %s seconds ---" % (time.time() - start_time))
-        form_clean_data2021()
-        form_full_data2021()
-        print("TOTAL --- %s seconds ---" % (time.time() - start_time))
+        pass
+        # start_time = time.time()
+        # data = Path('data2021.csv')
+        # info = Path('info2021.csv')
+        # parties = Path('parties2021.csv')
+        # if not data.is_file() or not info.is_file() or not parties.is_file():
+        #     parse_election_results2021()
+        #     print("DATA --- %s seconds ---" % (time.time() - start_time))
+        #     parse_election_info2021()
+        #     print("INFO --- %s seconds ---" % (time.time() - start_time))
+        #     parse_election_parties2021()
+        # shortify_parties2021()
+        # print("PARTIES --- %s seconds ---" % (time.time() - start_time))
+        # form_clean_data2021()
+        # form_full_data2021()
+        # print("TOTAL --- %s seconds ---" % (time.time() - start_time))
     else:
         print('wrong year!')
         exit(1)
@@ -250,3 +266,4 @@ def main():
 if __name__ == '__main__':
     sys.argv.append('2016')
     main()
+    browser.close()
