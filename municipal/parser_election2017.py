@@ -417,11 +417,10 @@ def parse_election_info2017():
     file = open('info2017.csv', 'w')
     district = 1
     for link in links:
-        # show_progress_bar(district, mandates=323)
+        show_progress_bar(district, mandates=323)
         district += 1
         file.write(csv)
         csv = parse_page_info(link)
-        district += 1
         # time.sleep(9)
     file.write(csv)
     file.close()
